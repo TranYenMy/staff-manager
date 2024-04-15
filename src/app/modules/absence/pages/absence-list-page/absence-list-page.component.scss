@@ -1,0 +1,55 @@
+nz-page-header{
+  border-bottom: 1px solid #eee;
+}
+.calendar{
+  margin-right: 60px;
+  margin-left: 10px;
+  width:200px;
+}
+.row{
+  display: flex;
+  margin-bottom: 20px;
+}
+.label{
+  display: inline-block;
+  max-width: 100%;
+  font-weight: bold;
+  font-family:'Open Sans', sans-serif ;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 20px
+}
+
+#status{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: #444;
+  margin-left: 10px;
+}
+
+.btn-default {
+  background-color: #f4f4f4;
+  color: #444;
+  border-color: #ddd;
+}
+.btn{
+  box-shadow: none;
+  border: 1px solid transparent ;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.col-8{
+  margin-top: 50px;
+  margin-left: 50px;
+  border: 1px solid #ddd
+}
+.mb-4{
+  margin-top: 20px;
+  margin-left: 10px;
+}
+//nz-table{
+//  border: 1px solid #ddd
+//}
+

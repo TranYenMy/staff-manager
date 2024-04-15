@@ -1,0 +1,71 @@
+<div class="caption">
+  <i nz-icon nzType="edit" class="icon-title"></i>
+  New Absence Request
+</div>
+<div class="form-body">
+  <div class="row">
+    <div class="col-md-4">
+      <nz-form-item>
+        <nz-form-label nzRequired="true">Group absence type</nz-form-label>
+        <br>
+        <br>
+        <nz-form-control>
+          <nz-select nzAllowClear nzPlaceHolder="Onsite">
+            <nz-option nzLabel="Nghỉ phép" nzValue=""></nz-option>
+            <nz-option nzLabel="Nghỉ ốm thông thường" nzValue=""></nz-option>
+            <nz-option nzLabel="Làm việc ở nhà" nzValue=""></nz-option>
+            <nz-option nzLabel="Nghỉ ốm dài ngày" nzValue=""></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="col-sm-4">
+      <nz-form-item>
+        <nz-form-label>Duration (days)</nz-form-label>
+        <nz-form-control>
+          <a class="text-underline" href="">See my leave</a>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="control-label display-block">
+        <span id="lblRemain">Remaining (days):</span>
+        <span id="perday"></span>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <nz-form-item>
+        <nz-form-label class="note">NOTE/LƯU Ý</nz-form-label>
+        <nz-form-control>
+          <i></i>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <nz-form-item>
+        <nz-form-label nzRequired="true">From</nz-form-label>
+        <nz-form-control>
+          <input nz-input type="date" class="date-picker"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div class="col-md-4">
+      <nz-form-item>
+        <nz-form-label class="control-label2" nzRequired="true">To</nz-form-label>
+        <nz-form-control>
+          <input nz-input type="date" class="date-picker"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <div class="row">
+
+  </div>
+</div>
+

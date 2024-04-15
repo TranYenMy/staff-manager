@@ -1,0 +1,41 @@
+<nz-page-header
+  class="site-page-header"
+  nzBackIcon
+  nzTitle="Example"
+  nzSubtitle="Example Import"
+></nz-page-header>
+
+<nz-spin [nzSpinning]="isUploading">
+<div class="page-content mt-5">
+
+  <div class="flex">
+    <div class="flex-auto px-4 py-2">
+      <button [disabled] = "isUploading" nz-button nzType="default" (click)="openFormUpload()" class="mb-4">Import file</button>
+    </div>
+    <div class="flex-auto px-4 py-2">
+
+    </div>
+    <div class="flex-auto text-right px-4 py-2">
+      <button
+        [disabled]="tempData.length === 0 || isUploading"
+        nz-button
+        nzType="primary"
+        (click)="submitData()"
+        class="mb-4">Submit</button>
+    </div>
+  </div>
+
+  <nz-table #basicTable [nzData]="tempData || []">
+    <thead>
+    <tr>
+      <th *ngFor="let f of tableFields">{{f}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td *ngFor="let f of tableFields">{{data[f]}}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+</nz-spin>

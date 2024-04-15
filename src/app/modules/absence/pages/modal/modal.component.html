@@ -1,0 +1,31 @@
+
+
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'Leave Summmary'">
+  <div class="modal">
+    <div class="row">
+      <div class="col-md-4" >
+        <label class="label mb-2 ">Requester</label>
+        <div class="form-control-static">
+          <span>1</span>
+        </div>
+      </div>
+      <div class="col-md-4" >
+        <label class="label mb-2 ">From</label>
+        <div class="form-control-static">
+          <span>8-7-2023</span>
+        </div>
+      </div>
+
+      <div class="col-md-4" >
+        <label class="label mb-2 ">To</label>
+        <div class="form-control-static">
+          <span>15-7-2023</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button nz-button nzType="default" (click)="closeModal()">Close</button>
+  </div>
+</nz-modal>
+

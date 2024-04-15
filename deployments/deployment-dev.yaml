@@ -1,0 +1,54 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "tools-frontend"
+  namespace: "bds-dev"
+  labels:
+    app: "tools-frontend"
+    deployment: "tools-frontend"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      "workload.user.cattle.io/workloadselector": "apps.deployment-bds-dev-tools-frontend"
+  template:
+    metadata:
+      annotations:
+        app: "tools-frontend"
+        pod: "tools-frontend"
+      labels:
+        app: "tools-frontend"
+        pod: "tools-frontend"
+        "workload.user.cattle.io/workloadselector": "apps.deployment-bds-dev-tools-frontend"
+    spec:
+      containers:
+        - name: "tools-frontend"
+          image: registry.fke.fptcloud.com/1a0a2532-3924-4691-a28a-73190afbed2e/cons/tools-frontend-dev:$IMAGE_TAG
+          imagePullPolicy: "Always"
+      dnsPolicy: "ClusterFirst"
+      hostname: "tools-frontend"
+      restartPolicy: "Always"
+      schedulerName: "default-scheduler"
+      terminationGracePeriodSeconds: 30
+
+      imagePullSecrets:
+        - name: "fptcloud-secret"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tools-frontend
+  namespace: "bds-dev"
+  labels:
+    app: tools-frontend
+    service: tools-frontend
+spec:
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-bds-dev-tools-frontend
+  type: ClusterIP

@@ -1,0 +1,45 @@
+<nz-page-header
+  class="site-page-header"
+  nzTitle="Account List"
+  nzSubtitle="Total {{accounts.length || 0}}"
+></nz-page-header>
+
+<div class="page-content">
+  <nz-table #tableData [nzData]="accounts">
+    <thead>
+    <tr>
+      <th nzLeft>Name</th>
+      <th>Email</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>Status</th>
+      <th nzRight>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of tableData.data; let i = index">
+      <td nzLeft>{{ data.name }}</td>
+      <td nzLeft>{{ data.email }}</td>
+      <td nzLeft>{{ data.createdAt | date: APP_DATE_TIME }}</td>
+      <td nzLeft>{{ data.updatedAt | date: APP_DATE_TIME }}</td>
+      <td nzLeft>
+        <div class="flex items-center" *ngIf="!data.emailVerified">
+          <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> InActive
+        </div>
+
+        <div class="flex items-center" *ngIf="data.emailVerified">
+          <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Activated
+        </div>
+      </td>
+      <td>
+        <nz-switch
+          [ngModel]="data.emailVerified"
+          [nzControl]="true"
+          (click)="manualUpdateUserStatus(data.email, i, data.emailVerified)"
+          [nzLoading]="isLoading"
+        ></nz-switch>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

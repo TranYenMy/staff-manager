@@ -1,0 +1,51 @@
+<nz-page-header
+  class="site-page-header"
+  nzBackIcon
+  nzTitle="Hợp đồng"
+  nzSubtitle="Import Hợp đồng"
+></nz-page-header>
+
+<nz-spin [nzSpinning]="isUploading">
+  <div class="page-content mt-5">
+    <div class="flex">
+      <div class="flex-auto px-4 py-2">
+        <button (click)="openFormUpload()" [disabled] = "isUploading" nz-button nzType="default" class="mb-4">
+          Import file
+        </button>
+
+        <button nz-button nzType="default" class="mb-4 ml-2" (click)="onDownloadTemplate()">
+          <span nz-icon nzType="file-excel" nzTheme="outline"></span>
+          Download template
+        </button>
+      </div>
+      <div class="flex-auto px-4 py-2">
+
+      </div>
+      <div class="flex-auto text-right pl-4 py-2">
+        <button
+          (click)="submitData()"
+          nz-button
+          nzType="primary"
+          class="mb-4">Submit</button>
+      </div>
+    </div>
+
+    <div class="px-3">
+      <nz-tabset [nzAnimated]="false" (nzSelectedIndexChange)="handleChangeTab($event)">
+        <nz-tab nzTitle="Thông tin chung">
+          <ng-container *ngTemplateOutlet="tableData"></ng-container>
+        </nz-tab>
+        <nz-tab nzTitle="Hạng mục công việc">
+          <ng-container *ngTemplateOutlet="tableData"></ng-container>
+        </nz-tab>
+        <nz-tab nzTitle="Đợt thanh toán">
+          <ng-container *ngTemplateOutlet="tableData"></ng-container>
+        </nz-tab>
+      </nz-tabset>
+
+      <ng-template #tableData>
+        <cons-base-table-viewer [tableFields]="tableFields" [data]="tempData"></cons-base-table-viewer>
+      </ng-template>
+    </div>
+  </div>
+</nz-spin>

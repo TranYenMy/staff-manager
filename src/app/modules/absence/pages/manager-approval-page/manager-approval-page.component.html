@@ -1,0 +1,42 @@
+<nz-page-header
+  class="site-page-header"
+  nzTitle="Phê duyệt đơn xin nghỉ phép"
+></nz-page-header>
+
+<nz-table #absenceTable [nzData]="listOfData"
+          [nzPageSize]="itemsPerPage" [nzPageIndex]="currentPage"
+          (nzPageIndexChange)="currentPage = $event" nzShowPagination>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Quantity</th>
+    <th>Absence type</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let absenceItem of absenceTable.data">
+    <td>{{ absenceItem.id }}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <button type="button"
+              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              style="background-color: #00c0ef; border-color: #00acd6; color:#fff">
+        Approve
+      </button>
+      <button type="button"
+              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              style="background-color: #3c8dbc; border-color: #367fa9; color: #ffffff">
+        Reject
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

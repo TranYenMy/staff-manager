@@ -1,0 +1,70 @@
+<!--<form consFormFieldValidation *ngIf="absenceForm" [formGroup]="absenceForm" (ngSubmit)="onSubmit(absenceForm)">-->
+<!--  <div class="mb-6">-->
+<!--    <label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Id</label>-->
+<!--    <input formControlName="id" type="text" id="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>-->
+<!--  </div>-->
+<!--  <div class="mb-6">-->
+<!--    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>-->
+<!--    <input formControlName="name" type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required>-->
+<!--  </div>-->
+
+<!--  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">-->
+<!--    Submit-->
+<!--  </button>-->
+<!--</form>-->
+
+<form  *ngIf="absence">
+  <div class="row">
+    <div class="col-md-4" id="regis">
+      <label class="label mb-2 ">Requester</label>
+      <div class="form-control-static">
+        <span></span>
+      </div>
+    </div>
+    <div class="col-md-4" >
+      <label class="label mb-2 ">From</label>
+      <div class="form-control-static">
+        <span >{{absence.startDate}}</span>
+      </div>
+    </div>
+
+    <div class="col-md-4" >
+      <label class="label mb-2 ">To</label>
+      <div class="form-control-static">
+        <span >{{absence.endDate}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4" id="absence">
+      <label class="label mb-2 ">Group absence type</label>
+      <div class="form-control-static">
+        <span>1</span>
+      </div>
+    </div>
+    <div class="col-md-4" id="duration">
+      <label class="label mb-2 ">Duration (days)</label>
+      <div class="form-control-static">
+        <a (click)="openModal()">See my leave</a>
+        <cons-modal></cons-modal>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4" id="reason">
+      <label class="label mb-2 ">Reason</label>
+      <div class="form-control-static">
+        <span>{{absence.quantity}}</span>
+      </div>
+    </div>
+    <div class="col-md-4" id="note">
+      <label class="label mb-2 ">NOTE/LƯU Ý</label>
+      <div class="form-control-static">
+        <span>8-7-2023</span>
+      </div>
+    </div>
+
+  </div>
+
+</form>

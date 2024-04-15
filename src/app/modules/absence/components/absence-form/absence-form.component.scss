@@ -1,0 +1,40 @@
+
+.row{
+  display: flex;
+  margin-bottom: 20px;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.label{
+  display: inline-block;
+  max-width: 100%;
+  font-weight: bold;
+  font-family:'Open Sans', sans-serif ;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 20px
+}
+.form-control-static {
+  display: block;
+  margin-left: 10px;
+}
+
+#regis{
+  margin-left: 30px;
+}
+#absence{
+  margin-left: 30px;
+}
+#reason{
+  margin-left: 30px;
+}
+.col-md-4{
+  margin-left: 300px;
+}
+#duration{
+  margin-left: 235px;
+}
+#note{
+  margin-left: 320px;
+}
+

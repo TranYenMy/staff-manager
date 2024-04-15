@@ -1,0 +1,48 @@
+nz-page-header{
+  border-bottom: 1px solid #eee;
+}
+
+.year{
+  margin-right: 60px;
+  margin-left: 10px;
+  width:200px;
+}
+.btn-default {
+  background-color: #f4f4f4;
+  color: #444;
+  border-color: #ddd;
+  border-radius: 2px;
+
+}
+.label{
+  display: inline-block;
+  max-width: 100%;
+  font-weight: bold;
+  font-family:'Open Sans', sans-serif ;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 20px
+}
+.btn{
+  box-shadow: none;
+  border: 1px solid transparent ;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.col-8{
+  margin-top: 50px;
+  margin-left: 50px;
+  border: 1px solid #ddd
+}
+.row{
+  display: flex;
+  margin-bottom: 20px;
+}
+nz-table{
+  border: 1px solid #ddd
+}
+
+
+

@@ -1,0 +1,77 @@
+<nz-page-header
+  class="site-page-header"
+  nzTitle="Lịch sử nghỉ phép"
+></nz-page-header>
+
+
+<button class="mb-4" nz-button nzType="primary" routerLink="/absence/create">
+  <span nz-icon nzType="plus" nzTheme="outline"></span>
+  Add New Request
+</button>
+
+<form *ngIf="searchForm" [formGroup]="searchForm">
+
+<div class="row">
+  <div class="col-md-4">
+    <label class="label mb-2 ">From</label>
+    <div class="calendar">
+      <input  formControlName="fromDate" type="date" class="bg-gray-50 border   text-sm rounded-lg  block w-full p-2 ">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label class="label mb-2 " id="to">To</label>
+    <div class="calendar">
+      <input formControlName="toDate" type="date" class="bg-gray-50 border   text-sm rounded-lg  block w-full p-2 ">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <label for="status" class="label mb-2 ">Status</label>
+    <select
+      formControlName="status"
+      id="status"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   w-full p-2.5   ">
+      <option [ngValue]="null">Selected All</option>
+      <option *ngFor="let p of status" [value]="p.id">{{p.text}}</option>
+
+    </select>
+  </div>
+
+  <div class="col-8">
+    <button type="submit" class="btn btn-default" (click)="onSubmit()">
+      Show Result
+    </button>
+  </div>
+</div>
+
+<nz-table #absenceTable [nzData]="listOfData"
+          [nzPageSize]="itemsPerPage" [nzPageIndex]="currentPage"
+          (nzPageIndexChange)="currentPage = $event" nzShowPagination>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Quantity</th>
+    <th>Absence type</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let absenceItem of absenceTable.data">
+    <td>{{ absenceItem.id }}</td>
+    <td>{{ absenceItem.startDate }}</td>
+    <td>{{ absenceItem.endDate }}</td>
+    <td>{{ absenceItem.quantity }}</td>
+    <td>{{ absenceItem.absenceType.nameAbsenceType }}</td>
+    <td>{{ absenceItem.status }}</td>
+    <td>
+      <a routerLink="/absence/create/{{absenceItem.id}}">Update</a>|
+      <a routerLink="/absence/ViewDetail/{{absenceItem.id}}">Detail</a>|
+      <a routerLink="./{{absenceItem.id}}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+</form>

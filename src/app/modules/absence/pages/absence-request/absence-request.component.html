@@ -1,0 +1,192 @@
+<nz-page-header
+  class="site-page-header"
+  nzTitle="Tạo yêu cầu nghỉ phép"
+></nz-page-header>
+
+  <form consFormFieldValidation *ngIf="absenceRequestForm" [formGroup]="absenceRequestForm"  >
+  <div class="row">
+    <div class="col-md-4">
+      <label for="absenceType" class="label mb-2 ">Group absence type</label>
+      <span class="required" aria-required="true">*</span>
+      <select id="groupAbsenceType"
+              formControlName="groupType" (change)="onSelectedGroup()"
+
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   w-full p-2.5   ">
+        <option [ngValue]="null">--Select--</option>
+        <option  *ngFor="let p of listGroup" [value]="p.id">{{p.nameGroupAbsenceType}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label for="absenceType" class="label mb-2 ">Absence type</label>
+      <span class="required" aria-required="true">*</span>
+      <select id="absenceType"
+              formControlName="absenceType" (change)="onSelectedAbsenceType()"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   w-full p-2.5   ">
+        <option [ngValue]="null">--Select--</option>
+        <option  *ngFor="let p of listTypeByGroup" [value]="p.id">{{p.nameAbsenceType}}</option>
+      </select>
+    </div>
+
+    <div class="col-sm-4">
+      <label class="label mb-2 ">Duration (days)
+      <span>{{durationDay}}</span>
+      </label>
+      <div class="seeLeave">
+        <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">See my leave</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label class="label mb-2 ">Remaining (days):
+        <span>{{absenceRequestForm.get('numAbsence')?.value}}</span>
+        </label>
+    </div>
+    <div class="col-md-8">
+      <label class="label mb-2 ">NOTE/LƯU Ý</label>
+      <p style="color: red; font-weight: bold">{{note}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label class="label mb-2 ">From</label>
+      <span class="required" aria-required="true">*</span>
+      <div class="calendar">
+        <nz-date-picker
+                formControlName="startDate"
+                nzFormat="dd-MM-yyyy" nzMode="date"
+                style="width: 100%" (ngModelChange)="handleDateChange($event)">
+
+        </nz-date-picker>
+
+
+        <!--<input formControlName="startDate" type="date"
+               class="bg-gray-50 border   text-sm rounded-lg  block w-full p-2 " (ngModelChange)="handleDateChange($event)">-->
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label class="label mb-2 " id="to">To</label>
+      <span class="required" aria-required="true">*</span>
+      <div class="calendar">
+        <nz-date-picker
+                formControlName="endDate"
+                nzFormat="dd-MM-yyyy" nzMode="date"
+                style="width: 100%" (ngModelChange)="handleDateChange($event)">
+
+        </nz-date-picker>
+
+<!--        <input formControlName="endDate" type="date" class="bg-gray-50 border   text-sm rounded-lg  block w-full p-2 "  (ngModelChange)="handleDateChange($event)">-->
+      </div>
+    </div>
+    <div class="col-md-4">
+    <div class="mb-6" *ngIf="showFullTime">
+      <label  id="full" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">FullTime</label>
+      <input (change)="onChangeIsFullDay()" checked id="checked-checkbox" type="checkbox" formControlName="isFull" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+    </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="!this.absenceRequestForm.get('isFull')?.getRawValue()">
+    <ng-container formArrayName="detailLeave" *ngFor="let control of detailLeave.controls; let i = index;">
+      <div class="mt-4 grid gap-6 mb-6 md:grid-cols-3" [formGroupName]="i">
+        <div class="calendar">
+          <nz-date-picker
+                  formControlName="day"
+                  nzFormat="dd-MMM-yyyy" nzMode="date"
+                  style="width: 100%" [disabled]="true">
+          </nz-date-picker>
+
+        </div>
+
+        <div>
+          <select formControlName="kind"
+                  id="kind"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option *ngFor="let p of dateType" [value]="p.id">{{p.text}}</option>
+          </select>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label for="absenceType" class="label mb-2 ">Reason</label>
+      <span class="required" aria-required="true">*</span>
+      <div class="txt">
+        <textarea id="message" rows="4"
+                  formControlName="reason"
+                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border "></textarea>
+      </div>
+    </div>
+  </div>
+    <div class="col-md-4">
+      <label for="absenceType" class="label mb-2 ">Follow</label>
+      <p style="color: orangered; font-weight: bold; font-size: 13px">Requested by {{userName}}</p>
+      <p style="font-style: italic">|__ Waiting Manager approve ({{mngName}})</p>
+      <p style="font-style: italic">|__ Waiting HR review ({{hrName}})</p>
+    </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label  class="label mb-2 ">Inform To</label>
+      <div class="txt">
+        <nz-select
+          class="w-full"
+          nzMode="multiple"
+          nzPlaceHolder="Select users"
+          nzAllowClear
+          nzShowSearch
+          nzServerSearch
+          formControlName="informToStaffList"
+          (nzOnSearch)="onSearch($event)"
+        >
+          <ng-container *ngFor="let o of optionList">
+            <nz-option *ngIf="!isLoading" [nzValue]="o.id" [nzLabel]="o.staffName"></nz-option>
+          </ng-container>
+          <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+            <span nz-icon nzType="loading" class="loading-icon"></span>
+            Loading Data...
+          </nz-option>
+        </nz-select>   <i class="fa fa-info-circle" aria-hidden="true">Điền địa chỉ của đối tượng cần được thông báo như PM dự án, đồng
+          nghiệp back up.</i>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4">
+      <button type="button"
+              (click)="save(absenceRequestForm)"
+              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" style="background-color: #00c0ef; border-color: #00acd6; color:#fff">
+        Save
+      </button>
+
+    </div>
+    <div class="col-4">
+      <button type="button"
+              (click)="onSubmit(absenceRequestForm)"
+              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" style="background-color: #3c8dbc; border-color: #367fa9; color: #ffffff">
+        Submit
+      </button>
+
+    </div>
+    <div class="col-4">
+      <button type="button"
+              (click)="onDiscard()"
+              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" style="background-color: #f4f4f4; border-color: #ddd">
+        Discard
+      </button>
+    </div>
+  </div>
+
+</form>
+
+
+<pre>
+  {{absenceRequestForm?.getRawValue() | json}}
+</pre>
+
